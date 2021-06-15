@@ -39,10 +39,10 @@ spec:
         git 'https://github.com/lukasz-rasinski/ecsdemo-nodejs'
 
         container(name: 'kaniko') {        
-          sh '''
+          sh """
           #!/busybox/sh
-          /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --verbosity debug --destination lrasinski/ecsdemo-nodejs:latest
-          '''
+          /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --verbosity debug --destination lrasinski/ecsdemo-nodejs:${env.BUILD_ID}
+          """
         }
       }
     }
